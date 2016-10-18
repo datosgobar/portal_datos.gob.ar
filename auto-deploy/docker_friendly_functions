@@ -73,15 +73,7 @@ start_ckan-docker (){
   			 $HOME/ckan/volumenes/home \
   			 $HOME/ckan/volumenes/data
   	
-  	docker run -d \
-  		-v $HOME/ckan/volumenes/data:/var/lib/ckan \
-  		--link $PG_DI:db \
-  		--link $SOLR_DI:solr \
-  		-p 80:80 \
-  		-p 8800:8800 \
-  		--name $CKAN_DI \
-  		$DHUB_USER/$CKAN_DI:latest
-
+  	docker run -dit -v $HOME/ckan/volumenes/data:/var/lib/ckan --link $PG_DI:db --link $SOLR_DI:solr -p 80:80 -p 8800:8800 --name $CKAN_DI $DHUB_USER/$CKAN_DI:latest
 }
 
 clean_old_install () {
@@ -111,10 +103,10 @@ deploy_portal (){
 
 print_ckan_status() {
 	printf "\nCKAN STATUS:\n===========\n"
-	printf "CKAN corriendo en: \n\t http://$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ckan) [privado]\n\t http://$(get_ip) [publico]\n"
-	printf "DPusher corriendo en: \t http://$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ckan):8800\n"
-	printf "PGCKAN corriendo en: \t postgres://$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' pg-ckan):5432\n"
-	printf "SOLR corriendo en:  \t http://$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' solr):8983\n\n"
+	printf "CKAN corriendo en: \n\t http://$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' ckan) [privado]\n\t http://$(get_ip) [publico]\n"
+	printf "DPusher corriendo en: \t http://$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' ckan):8800\n"
+	printf "PGCKAN corriendo en: \t postgres://$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' pg-ckan):5432\n"
+	printf "SOLR corriendo en:  \t http://$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' solr):8983\n\n"
 }
 
 bcpvf (){
@@ -134,5 +126,5 @@ bind_portal(){
 	else
 			HOST_TO_BIND=$1
 	fi 
-	docker exec -it ckan /usr/lib/ckan/default/bin/paster --plugin=ckan config-tool /etc/ckan/default/development.ini -e "ckan.datapusher.url = http://${HOST_TO_BIND}:8800" "ckan.site_url = http://${HOST_TO_BIND}"
+	docker exec -it ckan /usr/lib/ckan/default/bin/paster --plugin=ckan config-tool /etc/ckan/default/development.ini -e "ckan.datapusher.url = http://${HOST_TO_BIND}:8800" "ckan.site_url = http://${HOST_TO_BIND}"	
 }
