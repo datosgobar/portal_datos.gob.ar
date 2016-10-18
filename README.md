@@ -87,12 +87,12 @@ _La idea detras de esta implementacion de CKAN, es que **SOLO** te encargues de 
 
 + Ubuntu|Debian:
 
-		sudo su -c "cd /tmp && git clone https://github.com/JoseSalgado1024/ckan_in_docker.git && cd /tmp/ckan_in_docker/auto-deploy/ && ./ubuntu-debian_auto-deploy.sh; rm -f -r /tmp/ckan_in_docker"
+		sudo su -c "cd /tmp && git clone https://github.com/datosgobar/ckan_en_docker.git && cd /tmp/ckan_in_docker/auto-deploy/ && sh ubuntu-debian; rm -f -r /tmp/ckan_in_docker"
 
 
 + RHEL|CentOS:
 
-		sudo su -c "cd /tmp && git clone https://github.com/JoseSalgado1024/ckan_in_docker.git && cd /tmp/ckan_in_docker/auto-deploy/ && ./rhel-centos_auto-deploy.sh; rm -f -r /tmp/ckan_in_docker"
+		sudo su -c "cd /tmp && git clone https://github.com/datosgobar/ckan_en_docker.git && cd /tmp/ckan_in_docker/auto-deploy/ && sh rhel-centos; rm -f -r /tmp/ckan_in_docker"
 
 ---
 
