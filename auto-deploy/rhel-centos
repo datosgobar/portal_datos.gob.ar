@@ -46,7 +46,7 @@ docker exec -it ckan /usr/lib/ckan/default/bin/paster --plugin=ckan config-tool 
 
 echo "Creando usuario \"ckan_admin\"..."
 echo "Tenes que presionar \"y\" cuando el instalador te pregunte si deseas crear el usuarios y luego, cuando el instalar lo pida, ingresa la contraseña."
-docker exec -it ckan /bin/bash -c "/usr/lib/ckan/default/bin/paster --plugin=ckan sysadmin add jose -c /etc/ckan/default/development.ini"
+docker exec -it ckan /bin/bash -c "/usr/lib/ckan/default/bin/paster --plugin=ckan sysadmin add ckan_admin -c /etc/ckan/default/development.ini"
 
 echo "Esperando reinicio del contenedor..."
 sleep 15
