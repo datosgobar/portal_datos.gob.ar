@@ -109,7 +109,7 @@ _Para instalar y ejecutar CKAN-Docker, debemos seguir los siguientes pasos:_
 _Es recomendable clonar el repo dentro de /tmp (o C:\temp en **Windows X**), dado que al finalizar la instalacion, no usaremos mas el repositorio_.
 		
 		$ cd /tmp # en Linux, en Windows, usar cd C:\temp
-		$ git clone https://github.com/JoseSalgado1024/ckan_in_docker.git
+		$ git clone https://github.com/datosgobar/ckan_en_docker.git
 
 + Paso 2: _construir y lanzar el contenedor de **PostgreSQL** usando el Dockerfile hubicado en **postgresql-img/**._ 
 
@@ -142,8 +142,6 @@ _Es recomendable clonar el repo dentro de /tmp (o C:\temp en **Windows X**), dad
 
 + Paso 6(Opcional): _Crear usuario administrador **ckan_admin**_
 		
-		$ docker exec -it ckan \
-			/usr/lib/ckan/default/bin/paster --plugin=ckan sysadmin add ckan_admin \
-			-c /etc/ckan/default/development.ini
+		$ docker exec -it ckan /bin/bash -c "/usr/lib/ckan/default/bin/paster --plugin=ckan sysadmin add ckan_admin -c /etc/ckan/default/development.ini"
 
 --- 
