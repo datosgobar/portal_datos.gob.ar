@@ -113,20 +113,20 @@ _Es recomendable clonar el repo dentro de /tmp (o C:\temp en **Windows X**), dad
 
 + Paso 2: _construir y lanzar el contenedor de **PostgreSQL** usando el Dockerfile hubicado en **postgresql-img/**._ 
 
-		$ cd /tmp/ckan_in_docker/postgresql-img/
+		$ cd /tmp/ckan_en_docker/postgresql-img/
 		$ docker build -t pg-ckan:latest .
 		$ docker run -d  --name pg-ckan pg-ckan:latest
 
 
 + Paso 3: _construir y lanzar el contenedor de **Solr** usando el Dockerfile hubicado en **solr-img/**._
 
-		$ cd /tmp/ckan_in_docker/solr-img/ 
+		$ cd /tmp/ckan_en_docker/solr-img/ 
 		$ docker build -t solr:latest .
 		$ docker run -d  --name solr solr:latest
 
 + Paso 4: _construir el contenedor de **ckan** usando el Dockerfile hubicado en ckan-img/._
 
-		$ cd /tmp/ckan_in_docker/ckan-img
+		$ cd /tmp/ckan_en_docker/ckan-img
 		$ docker build -t ckan:latest .
 
 + Paso 5: _Correr contenedor  de **CKAN**_
