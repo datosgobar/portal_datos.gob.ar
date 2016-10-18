@@ -108,27 +108,26 @@ _Para instalar y ejecutar CKAN-Docker, debemos seguir los siguientes pasos:_
 + Paso 1: Clonar Repositorio. 
 _Es recomendable clonar el repo dentro de /tmp (o C:\temp en **Windows X**), dado que al finalizar la instalacion, no usaremos mas el repositorio_.
 		
-		$ cd /tmp # en Linux, en Windows, usar cd C:\temp
-		$ git clone https://github.com/datosgobar/ckan_en_docker.git
+		# /tmp en Linux, C:\temp en Windows 
+		$ git clone https://github.com/datosgobar/ckan_en_docker.git /tmp/ckan_en_docker
 
 + Paso 2: _construir y lanzar el contenedor de **PostgreSQL** usando el Dockerfile hubicado en **postgresql-img/**._ 
 
 		$ cd /tmp/ckan_in_docker/postgresql-img/
-		$ docker build -t jsalgadowk/postgresql:latest .
-		$ docker run -d  --name pg-ckan \
-			jsalgadowk/pg-ckan:latest
+		$ docker build -t pg-ckan:latest .
+		$ docker run -d  --name pg-ckan pg-ckan:latest
 
 
 + Paso 3: _construir y lanzar el contenedor de **Solr** usando el Dockerfile hubicado en **solr-img/**._
 
 		$ cd /tmp/ckan_in_docker/solr-img/ 
-		$ docker build -t jsalgadowk/solr:latest .
-		$ docker run -d  --name solr jsalgadowk/solr:latest
+		$ docker build -t solr:latest .
+		$ docker run -d  --name solr solr:latest
 
 + Paso 4: _construir el contenedor de **ckan** usando el Dockerfile hubicado en ckan-img/._
 
 		$ cd /tmp/ckan_in_docker/ckan-img
-		$ docker build -t jsalgadowk/ckan:latest .
+		$ docker build -t ckan:latest .
 
 + Paso 5: _Correr contenedor  de **CKAN**_
 		
@@ -138,7 +137,7 @@ _Es recomendable clonar el repo dentro de /tmp (o C:\temp en **Windows X**), dad
 			-p 80:80 \
 			-p 8800:8800 \
 			--name ckan \
-			jsalgadowk/ckan:latest
+			ckan:latest
 
 + Paso 6(Opcional): _Crear usuario administrador **ckan_admin**_
 		
