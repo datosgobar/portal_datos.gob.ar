@@ -7,11 +7,11 @@ _El mismo **CKAN** de siempre pero.. bellamente dockerizado...:heart_eyes:_
 + [Que es DOCKER?](#que-es-docker)
 + [Porque CKAN en Docker?](#porque-ckan-en-docker)
 + [Features](#features)
-+ [Prerequisitos](#prerequisitos)
++ [Prerrequisitos](#prerequisitos)
     + [DOCKER](#docker)
     + [GIT TOOLs](#git-tools)
-+ [Instalacion y Ejecucion de CKAN](#instalacion-y-ejecucion-de-ckan)
-    + [Instalacion Simplificada de CKAN](#instalacion-simplificada-de-ckan)
++ [Instalación y Ejecución de CKAN](#instalacion-y-ejecucion-de-ckan)
+    + [Instalación Simplificada de CKAN](#instalacion-simplificada-de-ckan)
     + [Instalacion Avanzada de CKAN](#instalacion-avanzada-de-ckan)
 
 ---
@@ -19,18 +19,18 @@ _El mismo **CKAN** de siempre pero.. bellamente dockerizado...:heart_eyes:_
 ## Que es CKAN?
 Comprehensive Knowledge Archive Network (CKAN) es una aplicación web de código abierto para el almacenamiento y la distribución de los datos, tales como hojas de cálculo y los contenidos de las bases de datos. Está inspirado en las capacidades de gestión de paquetes comunes para abrir sistemas operativos, como Linux, y está destinado a ser el "apt-get de Debian para los datos". _Fuente: [wikipedia](https://es.wikipedia.org/wiki/CKAN)_
 
-_...Mas informacion sobre CKAN?... Obvio! [Documentacion Oficial de CKAN](http://docs.ckan.org/en/latest/)_
+_...Mas información sobre CKAN?... Obvio! [Documentación Oficial de CKAN](http://docs.ckan.org/en/latest/)_
 
 ## Que es DOCKER?
 es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de Virtualización a nivel de sistema operativo en Linux. _Fuente: [wikipedia](https://es.wikipedia.org/wiki/Docker_(software))_
 
-_...Deseas saber mas sobre docker? Genial! Docker posee una documentacion excelente y podes verla [aqui](https://docs.docker.com/)_
+_...Deseas saber mas sobre docker? Genial! Docker posee una documentación excelente y podes verla [aquí](https://docs.docker.com/)_
 
 ## Porque CKAN en Docker?
 
 _Porque SI! :sunglasses:... Nah! esta en la TODO-LIST!_
 
-## Con que cuenta esta version de CKAN?
+## Con que cuenta esta versión de CKAN?
 
 Features:
 
@@ -40,8 +40,8 @@ Features:
 + Datapusher.
 + Apache2 & NGINX.
 + Extensiones:
-	+ CKAN-Hierarchy. Mas informacion [aqui](https://github.com/datagovuk/ckanext-hierarchy)
-	+ CKAN-GobArTheme. Ver [Demo](http://http://datos.gob.ar/). Mas Informacion [aqui](https://github.com/gobabiertoAR/datos.gob.ar/blob/master/docs/03_instalacion_tema_visual.md)
+	+ CKAN-Hierarchy. Mas información [aquí](https://github.com/datagovuk/ckanext-hierarchy)
+	+ CKAN-GobArTheme. Ver [Demo](http://http://datos.gob.ar/). Mas Información [aqui](https://github.com/gobabiertoAR/datos.gob.ar/blob/master/docs/03_instalacion_tema_visual.md)
 + Ckan-tools
 
 ## Prerequisitos:
@@ -77,13 +77,13 @@ _Descargar e Instalar desde:_
 
 ## Instalacion y Ejecucion de CKAN
 
-_En funcion a la probable dificultad de implementacion e incluso, la cantidad de pasos a realizar para lograr un deploy existoso, existen dos formas de instalar esta distribución de **CKAN**. Si no tenes muchos conocimientos de CKAN, Docker o de administracion de servidores en general, muy posiblemente, deberias utilizar la instalacion **[Simplificada  de CKAN](#instalacion-simplificada-de-ckan)**, la cual, esta pensada para que en la menor cantidad de pasos y de manera sencilla, tengas un Portal de Datos Funciona (Y muy bello :D). Ahora si por ejemplo, ya conoces la plataforma, tenes experiencia con Docker o simplemente, queres entender como es que funciona esta implementacion, te sugiero que revises la **[Instalacion Avanzada de CKAN](#instalacion-avanzada-de-ckan)**_
+_En función a la probable dificultad de implementación e incluso, la cantidad de pasos a realizar para lograr un deploy exitoso, existen dos formas de instalar esta distribución de **CKAN**. Si no tenes muchos conocimientos de CKAN, Docker o de administración de servidores en general, muy posiblemente, deberías utilizar la instalación **[Simplificada  de CKAN](#instalacion-simplificada-de-ckan)**, la cual, esta pensada para que en la menor cantidad de pasos y de manera sencilla, tengas un Portal de Datos Funciona (Y muy bello :D). Ahora si por ejemplo, ya conoces la plataforma, tenes experiencia con Docker o simplemente, queres entender como es que funciona esta implementación, te sugiero que revises la **[Instalacion Avanzada de CKAN](#instalacion-avanzada-de-ckan)**_
 
 ---
 
 ### Instalacion Simplificada de CKAN:
 
-_La idea detras de esta implementacion de CKAN, es que **SOLO** te encargues de tus datos, nada mas, por tanto, dependiendo de que OS usas, podes seleccionar un script de auto-deploy. La misma, te guiara casi de manera automatica por todo el proceso de instalacion realizando minimas preguntas e incluso "explicando" que se realiza que cada paso._
+_La idea detras de esta implementacion de CKAN, es que **SOLO** te encargues de tus datos, nada mas, por tanto, dependiendo de que OS usas, podes seleccionar un script de auto-deploy. La misma, te guiara casi de manera automática por todo el proceso de instalación realizando minimas preguntas e incluso "explicando" que se realiza que cada paso._
 
 + Ubuntu|Debian:
 
@@ -99,32 +99,32 @@ _La idea detras de esta implementacion de CKAN, es que **SOLO** te encargues de 
 ### Instalacion Avanzada de CKAN
 + Instalacion de CKAN con contenedores de Docker ya compilados:
 	
-	_Para esta clase de instalacion, no es necesario clonar el repo, dado que usaremos contenedores alojados en [DockerHub](https://hub.docker.com/) y el proceso de instalacion se divide en seis pasos.
+	_Para esta clase de instalación, no es necesario clonar el repo, dado que usaremos contenedores alojados en [DockerHub](https://hub.docker.com/) y el proceso de instalación se divide en seis pasos.
 
-+ Instalacion de CKAN usando Dockerfiles
++ Instalación de CKAN usando Dockerfiles
 
 _Para instalar y ejecutar CKAN-Docker, debemos seguir los siguientes pasos:_
 
 + Paso 1: Clonar Repositorio. 
-_Es recomendable clonar el repo dentro de /tmp (o C:\temp en **Windows X**), dado que al finalizar la instalacion, no usaremos mas el repositorio_.
+_Es recomendable clonar el repo dentro de /tmp (o C:\temp en **Windows X**), dado que al finalizar la instalación, no usaremos mas el repositorio_.
 		
 		# /tmp en Linux, C:\temp en Windows 
 		$ git clone https://github.com/datosgobar/ckan_en_docker.git /tmp/ckan_en_docker
 
-+ Paso 2: _construir y lanzar el contenedor de **PostgreSQL** usando el Dockerfile hubicado en **postgresql-img/**._ 
++ Paso 2: _construir y lanzar el contenedor de **PostgreSQL** usando el Dockerfile ubicado en **postgresql-img/**._ 
 
 		$ cd /tmp/ckan_en_docker/postgresql-img/
 		$ docker build -t pg-ckan:latest .
 		$ docker run -d  --name pg-ckan pg-ckan:latest
 
 
-+ Paso 3: _construir y lanzar el contenedor de **Solr** usando el Dockerfile hubicado en **solr-img/**._
++ Paso 3: _construir y lanzar el contenedor de **Solr** usando el Dockerfile ubicado en **solr-img/**._
 
 		$ cd /tmp/ckan_en_docker/solr-img/ 
 		$ docker build -t solr:latest .
 		$ docker run -d  --name solr solr:latest
 
-+ Paso 4: _construir el contenedor de **ckan** usando el Dockerfile hubicado en ckan-img/._
++ Paso 4: _construir el contenedor de **ckan** usando el Dockerfile ubicado en ckan-img/._
 
 		$ cd /tmp/ckan_en_docker/ckan-img
 		$ docker build -t ckan:latest .
