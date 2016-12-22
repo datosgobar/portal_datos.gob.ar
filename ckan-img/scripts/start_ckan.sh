@@ -6,7 +6,17 @@
 #  correctamente. 
 # ----------------------------------------------------- #
 
-APACHE2_WSGI=$CKAN_CONFIG/apache.wsgi
+APACHE2_WSGI="$CKAN_CONFIG/apache.wsgi"
+
+nginx &
+service apache2 restart;
+service redis-server restart;
+service rabbitmq-server restart;
+service postfix restart;
+
+chown www-data:www-data $CKAN_DATA
+chmod u+rwx $CKAN_DATA 
+	
 
 # Creamos contexto para CKAN
 /bin/bash $CKAN_INIT/.make_conf.sh
@@ -14,30 +24,22 @@ mconf=$?
 
 # Inicializamos la Base de datos e incluso, Solr.
 /bin/bash $CKAN_INIT/.init_db.sh
-
 idb=$?
-exit_code=$(($mconf + $idb))
 
+exit_code=$(($mconf + $idb))
+echo "Valor de exit_code: $exit_code"
 # Ambos commandos anteriores, fueron exitosos?
 if [ "$exit_code" -eq "0" ] ; then
-
-	# Forzamos la seleccion de nuestra configuracion actual dentro de WSGI 
-	sed "s/production.ini/$CKAN_CONFIG_FILE/g" $CKAN_CONFIG/apache.wsgi > temp.f && mv temp.f $CKAN_CONFIG/apache.wsgi  	
-	
 	# Considerando que CKAN/data va a ser un volumen externo, corrijo permisos
-	chown www-data:www-data -R $CKAN_DATA
-	chmod u+rwx -R $CKAN_DATA
-
-	# Si esta corriendo, detenemos Apache & NginX
-	service apache2 stop && service nginx stop;
-	service apache2 start && service apache2 reload && service apache2 restart && service nginx restart;
+	chown www-data:www-data $CKAN_DATA
+	chmod u+rwx $CKAN_DATA 
 	
+	# Restart Servers del front
+	service apache2 restart;
+	service nginx reload;
+
 	# Conectamos los logs de ckan con la salida de "docker logs"
-	# tail  -f /var/log/apache2/ckan_default.error.log	
-	# Si por alguna razon fallan los logs de CKAN-APACHE, el contenedor seguira vivo y funcional
-	while true; do sleep 1000; done
-
-
+	tail  -f /var/log/apache2/ckan_default.error.log
 else
 	# Ok.. el mundo ya no es un lugar amigable!
 	echo "-------------------------------------------"

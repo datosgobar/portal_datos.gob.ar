@@ -1,7 +1,7 @@
 #!/bin/sh
 
 init_db(){
-	${CKAN_HOME}/bin/paster --plugin=ckan db init -c /etc/ckan/default/development.ini
+	${CKAN_HOME}/bin/paster --plugin=ckan db init -c /etc/ckan/default/production.ini
 }
 
 init_datastore(){
@@ -17,7 +17,7 @@ init_datastore(){
 	psql -c "CREATE DATABASE datastore_default OWNER $DB_ENV_POSTGRES_USER;"
 	
 	# Set permisos
-	$CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /etc/ckan/default/development.ini | psql --set ON_ERROR_STOP=1
+	$CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /etc/ckan/default/production.ini | psql --set ON_ERROR_STOP=1
 }
 
 printf "Inicializando bases de datos... "
