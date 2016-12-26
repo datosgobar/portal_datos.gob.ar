@@ -96,7 +96,7 @@ RUN chmod 777 -R $CKAN_CONFIG
 CMD ["/etc/ckan_init.d/start_ckan.sh"]
 
 # Creo volumenes para las diferentes de CKAN.
-VOLUME $CKAN_CONFIG CKAN_DATA CKAN_DATA
+VOLUME $CKAN_CONFIG $CKAN_DATA
 
 # Abro el puerto de 80(ad) para Apache y el puerto de 8800(dp) apache.datapusher.wsgi
 EXPOSE $CKAN_APACHE2_PORT $CKAN_DATAPUSHER_PORT
