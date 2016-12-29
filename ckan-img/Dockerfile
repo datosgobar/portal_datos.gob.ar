@@ -9,7 +9,7 @@ ENV CKAN_HARVEST_GCF /var/log/ckan/std
 ENV DEBIAN_FRONTEND noninteractive
 ENV CKAN_APACHE2_PORT 80
 ENV CKAN_DATAPUSHER_PORT 8800
-ENV CKAN_CONFIG_FILE produ          ction.ini
+ENV CKAN_CONFIG_FILE production.ini
 ENV HOME /root
 ENV CKAN_VERSION 2.5.1  
 ENV CKAN_HOME /usr/lib/ckan/default
