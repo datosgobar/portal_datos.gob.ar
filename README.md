@@ -9,7 +9,6 @@ También podés [ver el repositorio del tema visual](https://github.com/datosgob
 	- [Dependencias:](#dependencias)
 	- [Instalacion y Ejecucion de CKAN](#instalacion-y-ejecucion-de-ckan)
 	- [Instalacion Simplificada de datos.gob.ar:](#instalacion-simplificada-de-datosgobar)
-- [```](#)
 	- [Instalacion Avanzada de datos.gob.ar](#instalacion-avanzada-de-datosgobar)
 - [Uso](#uso)
 	- [Cambiar URLs de la plataforma](#cambiar-urls-de-la-plataforma)
