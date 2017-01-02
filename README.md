@@ -1,20 +1,20 @@
-Datos.gob.ar (Docker)
+#Datos.gob.ar-en-docker
 
-Implementación de CKAN en Docker, desarrollada para ser la version 2 del portal de datos de la [República Argentina](http://datos.gob.ar). 
+Repositorio de la implementación de CKAN en Docker, desarrollada para la segunda versión del portal de datos de la [República Argentina](http://datos.gob.ar). 
 También podés [ver el repositorio del tema visual](https://github.com/datosgobar/datos.gob.ar).
 
 ---
 - [Contenido de instancia](#contenido-de-instancia)
-- [Instalacion:](#instalacion)
+- [Instalación:](#instalacion)
 	- [Dependencias:](#dependencias)
-	- [Instalacion y Ejecucion de CKAN](#instalacion-y-ejecucion-de-ckan)
-	- [Instalacion Simplificada de datos.gob.ar:](#instalacion-simplificada-de-datosgobar)
-	- [Instalacion Avanzada de datos.gob.ar](#instalacion-avanzada-de-datosgobar)
-- [Uso](#uso)
-	- [Cambiar URLs de la plataforma](#cambiar-urls-de-la-plataforma)
+	- [Instalación y ejecución de CKAN](#instalacion-y-ejecucion-de-ckan)
+	- [Instalación simplificada de datos.gob.ar:](#instalacion-simplificada-de-datosgobar)
+	- [Instalacion avanzada de datos.gob.ar](#instalacion-avanzada-de-datosgobar)
+- [Uso de datos.gob.ar-en-docker](#uso)
+	- [Cambiar URL's de la plataforma](#cambiar-urls-de-la-plataforma)
 	- [Usuarios](#usuarios)
-		- [Nuevo Usuario](#nuevo-usuario)
-		- [Nuevo Usuario Admin](#nuevo-usuario-admin)
+		- [Nuevo usuario](#nuevo-usuario)
+		- [Nuevo usuario Admin](#nuevo-usuario-admin)
 		- [Blanqueo de contraseña para un usuario](#blanqueo-de-contraseña-para-un-usuario)
 	- [Backup](#backup)
 		- [DB](#db)
@@ -36,52 +36,52 @@ También podés [ver el repositorio del tema visual](https://github.com/datosgob
 - [GobAR theme](https://github.com/datosgobar/datos.gob.ar)
 - [Apache2 & NginX](http://docs.ckan.org/en/ckan-2.5.2/maintaining/installing/deployment.html#install-apache-modwsgi-modrpaf)
 
-## Instalacion:
+## Instalacion
 
-### Dependencias:
+### Dependencias
 
 + Docker: [Docker.docs](https://docs.docker.com/engine/installation/)
 + Github: [Github.docs](https://help.github.com/)	
 
 
-### Instalacion y Ejecucion de CKAN
+### Instalación y ejecución de CKAN
 
-_En función a la probable dificultad de implementación e incluso, la cantidad de pasos a realizar para lograr un deploy exitoso, existen dos formas de instalar esta distribución de **CKAN**._
-_Si no tenes muchos conocimientos de CKAN, Docker o de administración de servidores en general, muy posiblemente, deberías utilizar la instalación [Simplificada  de CKAN](#instalacion-simplificada-de-ckan), la cual, esta pensada para que en la menor cantidad de pasos y de manera sencilla, tengas un Portal de Datos Funcional._
-_Ahora si por ejemplo, ya conoces la plataforma, tenes experiencia con Docker o simplemente, queres entender como es que funciona esta implementación, te sugiero que revises la [Instalacion Avanzada de CKAN](#instalacion-avanzada-de-ckan)_
+_Teniendo en cuenta la dificultad de implementación e incluso, la cantidad de pasos a realizar para lograr un deploy exitoso, existen dos formas de instalar esta distribución de **CKAN**._
+_Si no tenés muchos conocimientos de CKAN, Docker o de administración de servidores en general, te sugerimos usar la instalación [Simplificada  de CKAN](#instalacion-simplificada-de-ckan). Está pensada para que, en la menor cantidad de pasos y de manera sencilla, tengas un portal de datos funcional._
+_Si ya conocés la plataforma, tenés experiencia con Docker o simplemente, querés entender cómo funciona esta implementación, te sugiero que revises la [Instalación avanzada de CKAN](#instalacion-avanzada-de-ckan)_
 
 ---
 
-### Instalacion Simplificada de datos.gob.ar:
+### Instalacion simplificada de datos.gob.ar:
 
-_Para instalar la presente plataforma, solo hace falta ejecutar los siguientes comandos._
+_Para instalar esta plataforma, sólo ejecutá los siguientes comandos:_
 
 ```bash
 ###################################################################################
 #                                                                                 #
-# Para poder ejecutar esta plataforma, se requiere tener instalado Docker.engine  #
-# Si se posee un servidor con OS Linux, en cualquiera de sus dristros,            # 
-# se puede instalar facilmente corriendo el siguiente comando:                    #
+# Para poder ejecutar esta plataforma, necesitás tener instalado Docker.engine  #
+# Si tenés un servidor con OS Linux, en cualquiera de sus dristros,            # 
+# podés instalar fácilmente corriendo este comando:                    #
 #                                                                                 #
 # sudo su -c "curl -sSL http://get.docker.com | sh"                               #
 # sudo usermod -aG docker $USER                                                   #
 #                                                                                 #
 ###################################################################################
 
-# Instalacion contenedor de Solr:
+# Instalación contenedor de Solr:
 # ===============================
 docker run --restart=always \
 		   -d --name solr-ckan \
 		   datosgobar/solr-ckan:latest
 
-# Instalacion Contenedor PostgreSQL:
+# Instalación contenedor PostgreSQL:
 # ==================================
 docker run --restart=always \
 		   -d -v /path/to/pg/data/:/var/lib/postgresql/data/ \
 		   --name pg-ckan \
 		   datosgobar/pg-ckan:latest
 
-# Instalacion Contenedor CKAN web-app:
+# Instalación contenedor CKAN web-app:
 # ====================================
 docker run --restart=always \
 		   -d --name ckan \
@@ -94,9 +94,9 @@ docker run --restart=always \
 ```
 ---
 
-### Instalacion Avanzada de datos.gob.ar
+### Instalación avanzada de datos.gob.ar
 
-_Para instalar y ejecutar CKAN-Docker, debemos seguir los siguientes pasos:_
+_Para instalar y ejecutar CKAN-Docker, seguí estos pasos:_
 
 ```bash
 ###################################################################################
@@ -111,8 +111,8 @@ _Para instalar y ejecutar CKAN-Docker, debemos seguir los siguientes pasos:_
 ###################################################################################
 
 # Clonar el repositorio:
-# Es recomendable clonar el repo dentro de /tmp (o C:\temp en Windows X),
-# dado que al finalizar la instalación, no usaremos mas el repositorio
+# Te recomendamos clonar el repo dentro de /tmp (o C:\temp en Windows X),
+# dado que al finalizar la instalación, no usaremos más el repositorio
 
 # /tmp en Linux, C:\temp en Windows 
 git clone https://github.com/datosgobar/datos.gob.ar_docker /tmp/datos.gob.ar_docker
@@ -153,9 +153,9 @@ docker run --restart=always \
 ```		
 --- 
 
-## Uso
+## Uso de datos.gob.ar-en-docker
 
-### Cambiar URLs de la plataforma
+### Cambiar URL's de la plataforma
 
 ```bash
 docker exec -it ckan /bin/bash 
@@ -170,14 +170,14 @@ service nginx restart && service apache2 restart
 
 ### Usuarios
 
-#### Nuevo Usuario
+#### Nuevo usuario
 
 ```bash
 docker exec -it ckan /bin/bash 
 $CKAN_HOME/bin/paster --plugin=ckan user add {new_user} -c $CKAN_CONFIG/production.ini
 ```
 
-#### Nuevo Usuario Admin
+#### Nuevo usuario Admin
 
 ```bash
 docker exec -it ckan /bin/bash 
@@ -221,6 +221,6 @@ Este trabajo está inspirado en el desarrollo hecho por:
 
 ## Contacto
 
-Te invitamos a [crearnos un issue](https://github.com/datosgobar/portal-andino/issues/new?title=Encontre un bug en datos.gob.ar_docker) en caso de que encuentres algún bug o tengas feedback de alguna parte de `datos.gob.ar_docker`.
+Te invitamos a [crearnos un issue](https://github.com/datosgobar/portal-andino/issues/new?title=Encontre un bug en datos.gob.ar_docker) en caso de que encuentres algún bug o tengas feedback de alguna parte de `datos.gob.ar-en-docker`.
 
 Para todo lo demás, podés mandarnos tu comentario o consulta a [datos@modernizacion.gob.ar](mailto:datos@modernizacion.gob.ar).
