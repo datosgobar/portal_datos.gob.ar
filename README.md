@@ -24,7 +24,7 @@ También podés [ver el repositorio del tema visual](https://github.com/datosgob
 
 
 
-## Contenido de instancia
+## Contenido de la instancia
 
 - [CKAN 2.5.3](http://docs.ckan.org/en/ckan-2.5.3/)
 - [Datastore](http://docs.ckan.org/en/latest/maintaining/datastore.html)
@@ -36,7 +36,7 @@ También podés [ver el repositorio del tema visual](https://github.com/datosgob
 - [GobAR theme](https://github.com/datosgobar/datos.gob.ar)
 - [Apache2 & NginX](http://docs.ckan.org/en/ckan-2.5.2/maintaining/installing/deployment.html#install-apache-modwsgi-modrpaf)
 
-## Instalacion
+## Instalación
 
 ### Dependencias
 
@@ -52,7 +52,7 @@ _Si ya conocés la plataforma, tenés experiencia con Docker o simplemente, quer
 
 ---
 
-### Instalacion simplificada de datos.gob.ar:
+### Instalacion simplificada de datos.gob.ar
 
 _Para instalar esta plataforma, sólo ejecutá los siguientes comandos:_
 
