@@ -214,9 +214,9 @@ tar -cv $CKAN_DATA | gzip > /path/to/backup/folder/path/to/backup/folder/fs/prod
 
 Este trabajo está inspirado en el desarrollo hecho por:
 
-+ [CKAN.org](https://github.com/ckan/ckan/)
-+ [Eccenca](https://github.com/eccenca/ckan-docker)
-
+- [CKAN.org](https://github.com/ckan/ckan/)
+- [Eccenca](https://github.com/eccenca/ckan-docker)
+- [Portal-Andino](https://github.com/datosgobar/portal-andino)
 ## Contacto
 
 Te invitamos a [crearnos un issue](https://github.com/datosgobar/portal-andino/issues/new?title=Encontre un bug en datos.gob.ar_docker) en caso de que encuentres algún bug o tengas feedback de alguna parte de `datos.gob.ar_docker`.
