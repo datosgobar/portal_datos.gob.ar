@@ -52,7 +52,7 @@ _Si ya conocés la plataforma, tenés experiencia con Docker o simplemente, quer
 
 ---
 
-### Instalacion simplificada de datos.gob.ar
+### Instalación simplificada de datos.gob.ar
 
 _Para instalar esta plataforma, sólo ejecutá los siguientes comandos:_
 
