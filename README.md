@@ -70,14 +70,14 @@ _Para instalar esta plataforma, sólo ejecutá los siguientes comandos:_
 
 # Instalación contenedor de Solr:
 # ===============================
-docker run --restart=always \
-		   -d --name solr-ckan \
+docker run -d --restart=always \
+		   --name solr-ckan \
 		   datosgobar/solr-ckan:latest
 
 # Instalación contenedor PostgreSQL:
 # ==================================
-docker run --restart=always \
-		   -d -v /path/to/pg/data/:/var/lib/postgresql/data/ \
+docker run -d --restart=always \
+		   -v /path/to/pg/data/:/var/lib/postgresql/data/ \
 		   --name pg-ckan \
 		   datosgobar/pg-ckan:latest
 
@@ -141,8 +141,8 @@ cd /tmp/ckan_en_docker/ckan-img
 docker build -t ckan:latest .
 
 # Correr contenedor de CKAN
-docker run --restart=always \
-		   -d --name ckan \
+docker run -d --restart=always \
+		   --name ckan \
 		   -p 80:80 \
 		   -p 8800:8800 \
 		   -v /path/to/ckan_fs/:/var/lib/ckan \
