@@ -65,8 +65,6 @@ RUN touch /tmp/ckan_service.log && chmod u+rw /tmp/ckan_service.log
 # Instalamos CKAN
 RUN dpkg -i /tmp/python-ckan_2.5-trusty_amd64.deb
 
-# OK, Limpiamos
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Actualizamos pip
 RUN $CKAN_HOME/bin/pip install --upgrade pip 
@@ -105,3 +103,6 @@ VOLUME $CKAN_CONFIG $CKAN_DATA
 
 # Abro el puerto de 80(ad) para Apache y el puerto de 8800(dp) apache.datapusher.wsgi
 EXPOSE $CKAN_APACHE2_PORT $CKAN_DATAPUSHER_PORT
+
+# OK, Limpiamos
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
