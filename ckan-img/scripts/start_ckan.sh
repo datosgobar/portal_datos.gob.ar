@@ -16,9 +16,7 @@ service postfix restart;
 
 # Inicializamos la Base de datos e incluso, Solr.
 /bin/bash $CKAN_INIT/.init_db.sh
-idb=$?
-
-exit_code=$idb
+exit_code=$?
 
 # los commandos anteriores, fueron exitosos?
 if [ "$exit_code" -eq "0" ] ; then
