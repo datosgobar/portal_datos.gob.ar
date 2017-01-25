@@ -83,11 +83,11 @@ RUN touch $CKAN_HARVEST_GCF/fetch_consumer.log $CKAN_HARVEST_GCF/gather_consumer
 RUN chown www-data:www-data $CKAN_DATA /tmp/ckan_service.log && chmod u+rwx -R $CKAN_DATA /tmp/ckan_service.log
 ADD ./config/ckan_harvesting.conf /etc/supervisor/conf.d/
 #COPY ./config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD ./config/autoload/ /etc/service
-ADD ./config/ckan_default.conf /etc/apache2/sites-enabled/ckan_default.conf 
-ADD ./config/ckan_default.conf /etc/apache2/sites-enabled/DATAPUSHER_HOME.conf 
+COPY ./config/autoload/ /etc/service
+COPY ./config/ckan_default.conf /etc/apache2/sites-enabled/ckan_default.conf 
+COPY ./config/datapusher.conf /etc/apache2/sites-enabled/datapusher.conf 
 
-ADD ./scripts $CKAN_INIT
+COPY ./scripts $CKAN_INIT
 ADD ./config/apache.wsgi $CKAN_CONFIG/apache.wsgi
 ADD ./config/datapusher.wsgi /etc/ckan/datapusher.wsgi
 RUN rm -f $CKAN_CONFIG/production.ini
