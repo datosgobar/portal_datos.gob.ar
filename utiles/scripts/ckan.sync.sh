@@ -18,7 +18,7 @@ if [ -z "$1" ]
     printf "Setting user-defined [PROTOCOL]...\n"
     CKAN_HOST_PROT="$1"
 fi
-if [ -z "$1" ]
+if [ -z "$2" ]
   then
     printf "Setting default [HOST]=[181.209.63.29]...\n"
     CKAN_HOST_PROT="181.209.63.29"
