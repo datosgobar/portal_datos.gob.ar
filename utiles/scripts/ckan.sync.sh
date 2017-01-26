@@ -20,10 +20,10 @@ if [ -z "$1" ]
 fi
 if [ -z "$1" ]
   then
-    printf "Setting default [HOST]...\n"
+    printf "Setting default [HOST]=[181.209.63.29]...\n"
     CKAN_HOST_PROT="181.209.63.29"
   else
-    printf "Setting user-defined [HOST]...\n"
+    printf "Setting user-defined [HOST]=[%s]...\n" % $2
     CKAN_HOST_PROT="$2"
 fi
 
