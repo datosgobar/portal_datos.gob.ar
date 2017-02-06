@@ -25,7 +25,7 @@ if [ "$exit_code" -eq "0" ] ; then
 	chmod u+rwx $CKAN_DATA 
 	
 	#Actualizo indices de busqueda:
-	$CKAN_HOME/bin/paster --plugin=ckan tracking update -c $CKAN_CONFIG//production.ini
+	$CKAN_HOME/bin/paster --plugin=ckan tracking update -c $CKAN_CONFIG/production.ini
 	$CKAN_HOME/bin/paster --plugin=ckan search-index rebuild -r -c $CKAN_CONFIG/production.ini
 	
 	# Restart Servers del front
