@@ -1,0 +1,74 @@
+version: '2'
+services:
+    nginx:
+      image: datosgobar/portal-andino-nginx:development
+      ports:
+        - 80:80
+      depends_on:
+        - datosgobar
+      environment:
+        - CKAN_HOST=datosgobar
+    datosgobar:
+      build: .
+      container_name: datosgobar
+      ports:
+        - 8800:8800
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - $PWD:/dev-app
+    start_harvest:
+      build: .
+      container_name: start_harvest
+      command: /etc/ckan_init.d/start_cron.sh
+      depends_on:
+        - fetch_consumer
+        - gather_consumer
+      volumes:
+        - $PWD:/dev-app
+    gather_consumer:
+      build: .
+      container_name: gather_consumer
+      command: /etc/ckan_init.d/run_gather_consumer.sh
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - $PWD:/dev-app
+    fetch_consumer:
+      build: .
+      container_name: fetch_consumer
+      command: /etc/ckan_init.d/run_fetch_consumer.sh
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - $PWD:/dev-app
+    db:
+      image: postgres:9.5
+      environment:
+        - POSTGRES_USER=ckan
+        - POSTGRES_PASSWORD=ckan
+        - POSTGRES_DB=ckan
+    redis:
+      image: redis:3.2.7-alpine
+      networks:
+        - datosgobar-network
+    rabbitmq:
+      image: rabbitmq:3.6.6-alpine
+    solr:
+      image: datosgobar/portal-andino-solr:development
+      networks:
+        - datosgobar-network
+    postfix:
+      image: catatnight/postfix
+      ports:
+        - "25:25"
+        - "587:587"
