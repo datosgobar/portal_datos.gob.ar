@@ -1,0 +1,80 @@
+version: '2'
+services:
+    nginx:
+      container_name: datosgobar-nginx
+      image: datosgobar/portal-base-nginx:latest
+      ports:
+        - 80:80
+      depends_on:
+        - datosgobar
+      networks:
+        - datosgobar-network
+    datosgobar:
+      container_name: datosgobar
+      image: datosgobar/portal-datos.gob.ar:development
+      ports:
+        - 8800:8800
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      networks:
+        - datosgobar-network
+    start_harvest:
+      image: datosgobar/portal-datos.gob.ar:development
+      container_name: start_harvest
+      command: /etc/ckan_init.d/start_cron.sh
+      depends_on:
+        - fetch_consumer
+        - gather_consumer
+      volumes:
+        - $PWD:/dev-app
+    gather_consumer:
+      image: datosgobar/portal-datos.gob.ar:development
+      container_name: gather_consumer
+      command: /etc/ckan_init.d/run_gather_consumer.sh
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+    fetch_consumer:
+      image: datosgobar/portal-datos.gob.ar:development
+      container_name: fetch_consumer
+      command: /etc/ckan_init.d/run_fetch_consumer.sh
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - $PWD:/dev-app
+    db:
+      container_name: datosgobar-db
+      image: postgres:9.5
+      environment:
+        - POSTGRES_DB=ckan
+      networks:
+        - datosgobar-network
+    redis:
+      container_name: datosgobar-redis
+      image: redis:3.2.7-alpine
+      networks:
+        - datosgobar-network
+    solr:
+      container_name: datosgobar-solr
+      image: datosgobar/portal-base-solr:latest
+      networks:
+        - datosgobar-network
+    postfix:
+      container_name: datosgobar-postfix
+      image: catatnight/postfix
+      ports:
+        - "25:25"
+        - "587:587"
+      networks:
+        - datosgobar-network
+
+networks:
+  datosgobar-network:
