@@ -59,14 +59,10 @@ services:
         - POSTGRES_DB=ckan
     redis:
       image: redis:3.2.7-alpine
-      networks:
-        - datosgobar-network
     rabbitmq:
       image: rabbitmq:3.6.6-alpine
     solr:
       image: datosgobar/portal-andino-solr:development
-      networks:
-        - datosgobar-network
     postfix:
       image: catatnight/postfix
       ports:
