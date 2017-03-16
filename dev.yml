@@ -20,6 +20,8 @@ services:
         - postfix
       volumes:
         - $PWD:/dev-app
+      volumes:
+        - production_ini:/etc/ckan/default/
     start_harvest:
       build: .
       container_name: start_harvest
@@ -40,6 +42,8 @@ services:
         - postfix
       volumes:
         - $PWD:/dev-app
+      volumes:
+        - production_ini:/etc/ckan/default/
     fetch_consumer:
       build: .
       container_name: fetch_consumer
@@ -51,6 +55,8 @@ services:
         - postfix
       volumes:
         - $PWD:/dev-app
+      volumes:
+        - production_ini:/etc/ckan/default/
     db:
       image: postgres:9.5
       environment:
@@ -68,3 +74,5 @@ services:
       ports:
         - "25:25"
         - "587:587"
+volumes:
+  production_ini: {}
