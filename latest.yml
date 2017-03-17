@@ -36,6 +36,8 @@ services:
         - postfix
       volumes:
         - production_ini:/etc/ckan/default/
+      networks:
+        - datosgobar-network
     start_harvest:
       image: datosgobar/portal-datos.gob.ar:development
       container_name: start_harvest
@@ -47,6 +49,8 @@ services:
         - solr
         - redis
         - postfix
+      networks:
+        - datosgobar-network
       volumes:
         - production_ini:/etc/ckan/default/
     gather_consumer:
@@ -58,6 +62,8 @@ services:
         - solr
         - redis
         - postfix
+      networks:
+        - datosgobar-network
       volumes:
         - production_ini:/etc/ckan/default/
     fetch_consumer:
@@ -69,6 +75,8 @@ services:
         - solr
         - redis
         - postfix
+      networks:
+        - datosgobar-network
       volumes:
         - production_ini:/etc/ckan/default/
     db:
@@ -78,6 +86,8 @@ services:
         - POSTGRES_DB=ckan
         - POSTGRES_USER
         - POSTGRES_PASSWORD
+      networks:
+        - datosgobar-network
       networks:
         - datosgobar-network
     redis:
