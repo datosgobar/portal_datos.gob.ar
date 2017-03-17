@@ -25,6 +25,17 @@ services:
         - datosgobar-network
       volumes:
         - production_ini:/etc/ckan/default/
+    start_search_update:
+      image: datosgobar/portal-datos.gob.ar:development
+      container_name: start_search_update
+      command: /etc/ckan_init.d/start_rebuild_cron.sh
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - production_ini:/etc/ckan/default/
     start_harvest:
       image: datosgobar/portal-datos.gob.ar:development
       container_name: start_harvest
