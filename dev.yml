@@ -29,6 +29,10 @@ services:
       depends_on:
         - fetch_consumer
         - gather_consumer
+        - db
+        - solr
+        - redis
+        - postfix
       volumes:
         - $PWD:/dev-app
     gather_consumer:

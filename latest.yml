@@ -32,6 +32,12 @@ services:
       depends_on:
         - fetch_consumer
         - gather_consumer
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - production_ini:/etc/ckan/default/
     gather_consumer:
       image: datosgobar/portal-datos.gob.ar:development
       container_name: gather_consumer
