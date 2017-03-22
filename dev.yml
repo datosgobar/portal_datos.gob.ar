@@ -20,7 +20,6 @@ services:
         - postfix
       volumes:
         - $PWD:/dev-app
-      volumes:
         - production_ini:/etc/ckan/default/
     start_search_update:
       image: datosgobar/portal-datos.gob.ar:development
@@ -57,7 +56,6 @@ services:
         - postfix
       volumes:
         - $PWD:/dev-app
-      volumes:
         - production_ini:/etc/ckan/default/
     fetch_consumer:
       build: .
@@ -70,7 +68,6 @@ services:
         - postfix
       volumes:
         - $PWD:/dev-app
-      volumes:
         - production_ini:/etc/ckan/default/
     db:
       image: postgres:9.5
