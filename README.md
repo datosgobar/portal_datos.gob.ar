@@ -44,51 +44,6 @@ Ver documentación de [instalación](http://portal_datos.gob.ar.readthedocs.io/e
 
 Ver la documentacion [uso](http://portal_datos.gob.ar.readthedocs.io/es/master/)
 
-```
-
-### Usuarios
-
-#### Nuevo usuario
-
-```bash
-docker exec -it ckan /bin/bash 
-$CKAN_HOME/bin/paster --plugin=ckan user add {new_user} -c $CKAN_CONFIG/production.ini
-```
-
-#### Nuevo usuario Admin
-
-```bash
-docker exec -it ckan /bin/bash 
-$CKAN_HOME/bin/paster --plugin=ckan sysadmin add {admin_user} -c $CKAN_CONFIG/production.ini
-```
-
-#### Blanqueo de contraseña para un usuario
-
-```bash
-docker exec -it ckan /bin/bash 
-$CKAN_HOME/bin/paster --plugin=ckan user setpass {user} -c $CKAN_CONFIG/production.ini
-```
-
-### Backup
-
-#### DB
-
-```bash
-# Esta tarea requiere tener instalado psql, pg-version: 9.5 o superior
-# wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-# sudo apt-get -y update && sudo apt-get -y install pgadmin3
-mkdir -p /path/to/backup/folder/sql
-pg_dump -h {db_host} -U {ckan_default_user} -p {port} -f /path/to/backup/folder/sql/dump_ckan_default.sql ckan_default
-pg_dump -h {db_host} -U {ckan_default_user} -p {port} -f /path/to/backup/folder/sql/dump_datastore_default.sql datastore_default
-```
-
-#### FS
-```bash
-docker exec -it ckan /bin/bash
-mkdir -p /path/to/backup/folder/fs
-tar -cv $CKAN_DATA | gzip > /path/to/backup/folder/path/to/backup/folder/fs/prod.data.tar.gz
-```
-
 ## Créditos
 
 Este trabajo está inspirado en el desarrollo hecho por:
