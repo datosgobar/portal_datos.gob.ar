@@ -14,6 +14,7 @@ services:
     datosgobar:
       container_name: datosgobar
       image: datosgobar/portal-datos.gob.ar:development
+      restart: always
       ports:
         - 8800:8800
       depends_on:
@@ -82,6 +83,7 @@ services:
     db:
       container_name: datosgobar-db
       image: postgres:9.5
+      restart: always
       environment:
         - POSTGRES_DB=ckan
         - POSTGRES_USER
@@ -98,6 +100,7 @@ services:
     solr:
       container_name: datosgobar-solr
       image: datosgobar/portal-base-solr:latest
+      restart: always
       networks:
         - datosgobar-network
     postfix:
