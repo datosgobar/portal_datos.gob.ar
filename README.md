@@ -38,11 +38,11 @@ También podés [ver el repositorio del tema visual](https://github.com/datosgob
 
 ## Instalación
 
-Ver documentación de [instalación](http://portal_datos.gob.ar.readthedocs.io/es/master/)
+Ver documentación de [instalación](http://portal_datos.gob.ar.readthedocs.io/es/master/setup/install/)
 
 ## Uso
 
-Ver la documentacion [uso](http://portal_datos.gob.ar.readthedocs.io/es/master/)
+Ver la documentacion [uso](http://portal_datos.gob.ar.readthedocs.io/es/master/setup/usage/)
 
 ## Créditos
 
