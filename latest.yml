@@ -9,8 +9,6 @@ services:
         - datosgobar
       networks:
         - datosgobar-network
-      environment:
-        - CKAN_HOST
     datosgobar:
       container_name: datosgobar
       image: datosgobar/portal-datos.gob.ar:development
