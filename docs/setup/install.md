@@ -56,7 +56,6 @@ Para instalar y ejecutar Andino, seguimos estos pasos:
         $ DB_PASSWORD=<my pass>
         $ echo "POSTGRES_USER=$DB_USER" > .env
         $ echo "POSTGRES_PASWORD=$DB_PASS" >> .env
-        $ echo "CKAN_HOST=datosgobar" >> .env # Esta configuración es para nginx
         
 
 + Paso 3: _construir y lanzar los contenedor de servicios usando el archivo **latest.yml**_
@@ -65,7 +64,7 @@ Para instalar y ejecutar Andino, seguimos estos pasos:
 
 + Paso 4: _construir y lanzar el contenedor de **datosgobar** usando el archivo **latest.yml**_
 
-		$ docker-compose -f latest.yml up -d datosgobar
+		$ docker-compose -f latest.yml up -d portal
 		
 + Paso 5: Inicializar la base de datos y la configuración de la aplicación:
 
@@ -77,11 +76,11 @@ DB_USER=<my db user>
 DB_PASS=<my db pass>
 STORE_USER=<my datastore user>
 STORE_PASS=<my datastore password>
-docker exec datosgobar /etc/ckan_init.d/init.sh -e "$EMAIL" -h "$HOST" \
+docker exec portal /etc/ckan_init.d/init.sh -e "$EMAIL" -h "$HOST" \
         -p "$DB_USER" -P "$DB_PASS" \
         -d "$STORE_USER" -D "$STORE_PASS"
         
-docker exec datosgobar /etc/ckan_init.d/init_datosgobar.sh
+docker exec portal /etc/ckan_init.d/init_datosgobar.sh
 
 ```
 

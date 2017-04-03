@@ -18,7 +18,7 @@ Para levantar toda la aplicacion, se puede correr:
 Si es la primera vez que se corre este comando, puede llegar a tardar bastante end escargar las imágenes.
 Una vez terminado, esto dejarar en el puerto localhost:80 la aplicacion corriendo, pero antes se debe correr un comando para inicializar en desarrollo:
 
-    $ docker exec -it datosgobar /etc/ckan_init.d/init_dev.sh
+    $ docker exec -it portal /etc/ckan_init.d/init_dev.sh
 
 
 Tambien se pueden levantar los servicios por separado de la aplicación:
@@ -29,7 +29,7 @@ Tambien se pueden levantar los servicios por separado de la aplicación:
 
 * La aplicación tendrá el puerto 8080 la aplicación y en el 8800 el datapusher.
     
-```$ docker-compose -f dev.yml up --abort-on-container-exit --build --no-deps datosgobar```
+```$ docker-compose -f dev.yml up --abort-on-container-exit --build --no-deps portal```
 
 * Nginx que estará en el puerto `80`:
     
@@ -39,6 +39,6 @@ Eso levantará la aplicación con el directorio actual (`$PWD`) disponible dentr
 
 Para acceder a la aplicación, hacer modificaciones en `runtime`, basta con correr el comando:
 
-    $ docker-compose -f dev.yml exec datosgobar /bin/bash
+    $ docker-compose -f dev.yml exec portal /bin/bash
 
 
