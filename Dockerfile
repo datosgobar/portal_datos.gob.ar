@@ -1,10 +1,10 @@
-FROM datosgobar/portal-base:latest
+FROM datosgobar/portal-base:release-0.1
 MAINTAINER Leandro Gomez<lgomez@devartis.com>
 
 ENV CKAN_HOME /usr/lib/ckan/default
 ENV CKAN_DIST_MEDIA /usr/lib/ckan/default/src/ckanext-gobar-theme/ckanext/gobar_theme/public/user_images
 ENV CKAN_DEFAULT /etc/ckan/default
-WORKDIR /app-datosgobar
+WORKDIR /portal
 RUN $CKAN_HOME/bin/pip install -e git+https://github.com/datosgobar/datos.gob.ar.git#egg=ckanext-gobar_theme
 ADD ./conf/config/datapusher.wsgi /etc/ckan/datapusher.wsgi
 COPY ./conf/config/datapusher.conf /etc/apache2/sites-enabled/datapusher.conf
