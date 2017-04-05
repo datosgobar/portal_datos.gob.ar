@@ -36,7 +36,7 @@ python ./install.py --error_email "$EMAIL" --site_host="$HOST" \
     --database_user="$DB_USER" --database_password="$DB_PASS" \
     --datastore_user="$STORE_USER" --datastore_password="$STORE_PASS" \
     --repo portal_datos.gob.ar
-docker-compose -f latest.yml exec portal /etc/ckan_init.d/init_datosgobar.sh
+docker-compose -f latest.yml exec portal bash /etc/ckan_init.d/init_datosgobar.sh
 ```
 
 ### Instalación avanzada
@@ -49,15 +49,15 @@ Para instalar y ejecutar Andino, seguimos estos pasos:
 
 		$ sudo mkdir /etc/datosgobar
 		$ cd /etc/datosgobar
-		$ git clone https://github.com/datosgobar/portal_datos.gob.ar.git datosgobar
+		$ sudo git clone https://github.com/datosgobar/portal_datos.gob.ar.git datosgobar
 		$ cd datosgobar
 		
 + Paso 2: Setear las variables de entorno para el contenedor de postgresql
 
         $ DB_USER=<my user>
         $ DB_PASSWORD=<my pass>
-        $ echo "POSTGRES_USER=$DB_USER" > .env
-        $ echo "POSTGRES_PASWORD=$DB_PASS" >> .env
+        $ sudo su -c "echo POSTGRES_USER=$DB_USER > .env"
+        $ sudo su -c "echo POSTGRES_PASWORD=$DB_PASS >> .env"
         
 
 + Paso 3: _construir y lanzar los contenedor de servicios usando el archivo **latest.yml**_
@@ -82,7 +82,7 @@ docker-compose -f latest.yml exec portal /etc/ckan_init.d/init.sh -e "$EMAIL" -h
         -p "$DB_USER" -P "$DB_PASS" \
         -d "$STORE_USER" -D "$STORE_PASS"
         
-docker-compose -f latest.yml exec portal /etc/ckan_init.d/init_datosgobar.sh
+docker-compose -f latest.yml exec portal bash /etc/ckan_init.d/init_datosgobar.sh
 
 ```
 
