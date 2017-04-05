@@ -6,10 +6,10 @@ services:
       ports:
         - 80:80
       depends_on:
-        - datosgobar
+        - portal
       networks:
-        - datosgobar-network
-    datosgobar:
+        - portal-network
+    portal:
       container_name: datosgobar
       image: datosgobar/portal-datos.gob.ar:development
       restart: always
@@ -21,7 +21,7 @@ services:
         - redis
         - postfix
       networks:
-        - datosgobar-network
+        - portal-network
       volumes:
         - production_ini:/etc/ckan/default/
     start_search_update:
@@ -36,7 +36,7 @@ services:
       volumes:
         - production_ini:/etc/ckan/default/
       networks:
-        - datosgobar-network
+        - portal-network
     start_harvest:
       image: datosgobar/portal-datos.gob.ar:development
       container_name: start_harvest
@@ -49,7 +49,7 @@ services:
         - redis
         - postfix
       networks:
-        - datosgobar-network
+        - portal-network
       volumes:
         - production_ini:/etc/ckan/default/
     gather_consumer:
@@ -62,7 +62,7 @@ services:
         - redis
         - postfix
       networks:
-        - datosgobar-network
+        - portal-network
       volumes:
         - production_ini:/etc/ckan/default/
     fetch_consumer:
@@ -75,7 +75,7 @@ services:
         - redis
         - postfix
       networks:
-        - datosgobar-network
+        - portal-network
       volumes:
         - production_ini:/etc/ckan/default/
     db:
@@ -87,20 +87,18 @@ services:
         - POSTGRES_USER
         - POSTGRES_PASSWORD
       networks:
-        - datosgobar-network
-      networks:
-        - datosgobar-network
+        - portal-network
     redis:
       container_name: datosgobar-redis
       image: redis:3.2.7-alpine
       networks:
-        - datosgobar-network
+        - portal-network
     solr:
       container_name: datosgobar-solr
       image: datosgobar/portal-base-solr:latest
       restart: always
       networks:
-        - datosgobar-network
+        - portal-network
     postfix:
       container_name: datosgobar-postfix
       image: catatnight/postfix
@@ -108,10 +106,10 @@ services:
         - "25:25"
         - "587:587"
       networks:
-        - datosgobar-network
+        - portal-network
 
 networks:
-  datosgobar-network:
+  portal-network:
 
 volumes:
   production_ini: {}
