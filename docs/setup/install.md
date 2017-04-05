@@ -36,6 +36,7 @@ python ./install.py --error_email "$EMAIL" --site_host="$HOST" \
     --database_user="$DB_USER" --database_password="$DB_PASS" \
     --datastore_user="$STORE_USER" --datastore_password="$STORE_PASS" \
     --repo portal_datos.gob.ar
+docker-compose -f latest.yml exec portal /etc/ckan_init.d/init_datosgobar.sh
 ```
 
 ### Instalación avanzada
@@ -77,11 +78,11 @@ DB_USER=<my db user>
 DB_PASS=<my db pass>
 STORE_USER=<my datastore user>
 STORE_PASS=<my datastore password>
-docker exec portal /etc/ckan_init.d/init.sh -e "$EMAIL" -h "$HOST" \
+docker-compose -f latest.yml exec portal /etc/ckan_init.d/init.sh -e "$EMAIL" -h "$HOST" \
         -p "$DB_USER" -P "$DB_PASS" \
         -d "$STORE_USER" -D "$STORE_PASS"
         
-docker exec portal /etc/ckan_init.d/init_datosgobar.sh
+docker-compose -f latest.yml exec portal /etc/ckan_init.d/init_datosgobar.sh
 
 ```
 
