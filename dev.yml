@@ -1,0 +1,90 @@
+version: '2'
+services:
+    nginx:
+      image: datosgobar/portal-base-nginx:release-0.1
+      ports:
+        - 80:80
+      depends_on:
+        - portal
+    portal:
+      build: .
+      container_name: portal
+      ports:
+        - 8800:8800
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - $PWD:/dev-app
+        - production_ini:/etc/ckan/default/
+    start_search_update:
+      image: datosgobar/portal-datos.gob.ar:development
+      container_name: start_search_update
+      command: /etc/ckan_init.d/start_rebuild_cron.sh
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - production_ini:/etc/ckan/default/
+    start_harvest:
+      build: .
+      container_name: start_harvest
+      command: /etc/ckan_init.d/start_cron.sh
+      depends_on:
+        - fetch_consumer
+        - gather_consumer
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - $PWD:/dev-app
+    gather_consumer:
+      build: .
+      container_name: gather_consumer
+      command: /etc/ckan_init.d/run_gather_consumer.sh
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - $PWD:/dev-app
+        - production_ini:/etc/ckan/default/
+    fetch_consumer:
+      build: .
+      container_name: fetch_consumer
+      command: /etc/ckan_init.d/run_fetch_consumer.sh
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - $PWD:/dev-app
+        - production_ini:/etc/ckan/default/
+    db:
+      image: postgres:9.5
+      environment:
+        - POSTGRES_USER=ckan
+        - POSTGRES_PASSWORD=ckan
+        - POSTGRES_DB=ckan
+    redis:
+      image: redis:3.2.7-alpine
+    rabbitmq:
+      image: rabbitmq:3.6.6-alpine
+    solr:
+      image: datosgobar/portal-base-solr:release-0.1
+    postfix:
+      image: catatnight/postfix
+      ports:
+        - "25:25"
+        - "587:587"
+
+# Using this, I share producion.ini configuration between containers
+volumes:
+  production_ini: {}

@@ -1,0 +1,117 @@
+version: '2'
+services:
+    nginx:
+      container_name: datosgobar-nginx
+      image: datosgobar/portal-base-nginx:release-0.1
+      ports:
+        - 80:80
+      depends_on:
+        - portal
+      networks:
+        - portal-network
+    portal:
+      container_name: datosgobar
+      image: datosgobar/portal-datos.gob.ar:development
+      restart: always
+      ports:
+        - 8800:8800
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      networks:
+        - portal-network
+      volumes:
+        - production_ini:/etc/ckan/default/
+    start_search_update:
+      image: datosgobar/portal-datos.gob.ar:development
+      container_name: start_search_update
+      command: /etc/ckan_init.d/start_rebuild_cron.sh
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      volumes:
+        - production_ini:/etc/ckan/default/
+      networks:
+        - portal-network
+    start_harvest:
+      image: datosgobar/portal-datos.gob.ar:development
+      container_name: start_harvest
+      command: /etc/ckan_init.d/start_cron.sh
+      depends_on:
+        - fetch_consumer
+        - gather_consumer
+        - db
+        - solr
+        - redis
+        - postfix
+      networks:
+        - portal-network
+      volumes:
+        - production_ini:/etc/ckan/default/
+    gather_consumer:
+      image: datosgobar/portal-datos.gob.ar:development
+      container_name: gather_consumer
+      command: /etc/ckan_init.d/run_gather_consumer.sh
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      networks:
+        - portal-network
+      volumes:
+        - production_ini:/etc/ckan/default/
+    fetch_consumer:
+      image: datosgobar/portal-datos.gob.ar:development
+      container_name: fetch_consumer
+      command: /etc/ckan_init.d/run_fetch_consumer.sh
+      depends_on:
+        - db
+        - solr
+        - redis
+        - postfix
+      networks:
+        - portal-network
+      volumes:
+        - production_ini:/etc/ckan/default/
+    db:
+      container_name: datosgobar-db
+      image: postgres:9.5
+      restart: always
+      environment:
+        - POSTGRES_DB=ckan
+        - POSTGRES_USER
+        - POSTGRES_PASSWORD
+      networks:
+        - portal-network
+    redis:
+      container_name: datosgobar-redis
+      image: redis:3.2.7-alpine
+      networks:
+        - portal-network
+    solr:
+      container_name: datosgobar-solr
+      image: datosgobar/portal-base-solr:release-0.1
+      restart: always
+      networks:
+        - portal-network
+    postfix:
+      container_name: datosgobar-postfix
+      image: catatnight/postfix
+      ports:
+        - "25:25"
+        - "587:587"
+      networks:
+        - portal-network
+
+networks:
+  portal-network:
+
+# Using this, I share producion.ini configuration between containers
+volumes:
+  production_ini: {}
+
