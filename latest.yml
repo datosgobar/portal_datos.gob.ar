@@ -11,7 +11,7 @@ services:
         - portal-network
     portal:
       container_name: datosgobar
-      image: datosgobar/portal-datos.gob.ar:development
+      image: datosgobar/portal-datos.gob.ar:release-0.1
       restart: always
       ports:
         - 8800:8800
@@ -25,7 +25,7 @@ services:
       volumes:
         - production_ini:/etc/ckan/default/
     start_search_update:
-      image: datosgobar/portal-datos.gob.ar:development
+      image: datosgobar/portal-datos.gob.ar:release-0.1
       container_name: start_search_update
       command: /etc/ckan_init.d/start_rebuild_cron.sh
       depends_on:
@@ -38,7 +38,7 @@ services:
       networks:
         - portal-network
     start_harvest:
-      image: datosgobar/portal-datos.gob.ar:development
+      image: datosgobar/portal-datos.gob.ar:release-0.1
       container_name: start_harvest
       command: /etc/ckan_init.d/start_cron.sh
       depends_on:
@@ -53,7 +53,7 @@ services:
       volumes:
         - production_ini:/etc/ckan/default/
     gather_consumer:
-      image: datosgobar/portal-datos.gob.ar:development
+      image: datosgobar/portal-datos.gob.ar:release-0.1
       container_name: gather_consumer
       command: /etc/ckan_init.d/run_gather_consumer.sh
       depends_on:
@@ -66,7 +66,7 @@ services:
       volumes:
         - production_ini:/etc/ckan/default/
     fetch_consumer:
-      image: datosgobar/portal-datos.gob.ar:development
+      image: datosgobar/portal-datos.gob.ar:release-0.1
       container_name: fetch_consumer
       command: /etc/ckan_init.d/run_fetch_consumer.sh
       depends_on:
