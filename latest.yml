@@ -26,7 +26,7 @@ services:
         - production_ini:/etc/ckan/default/
     start_search_update:
       image: datosgobar/portal-datos.gob.ar:release-0.1
-      container_name: start_search_update
+      container_name: datosgobar-start-search-update
       command: /etc/ckan_init.d/start_rebuild_cron.sh
       depends_on:
         - db
@@ -39,7 +39,7 @@ services:
         - portal-network
     start_harvest:
       image: datosgobar/portal-datos.gob.ar:release-0.1
-      container_name: start_harvest
+      container_name: datosgobar-start-harvest
       command: /etc/ckan_init.d/start_cron.sh
       depends_on:
         - fetch_consumer
@@ -54,7 +54,7 @@ services:
         - production_ini:/etc/ckan/default/
     gather_consumer:
       image: datosgobar/portal-datos.gob.ar:release-0.1
-      container_name: gather_consumer
+      container_name: datosgobar-gather-consumer
       command: /etc/ckan_init.d/run_gather_consumer.sh
       depends_on:
         - db
@@ -67,7 +67,7 @@ services:
         - production_ini:/etc/ckan/default/
     fetch_consumer:
       image: datosgobar/portal-datos.gob.ar:release-0.1
-      container_name: fetch_consumer
+      container_name: datosgobar-fetch-consumer
       command: /etc/ckan_init.d/run_fetch_consumer.sh
       depends_on:
         - db
