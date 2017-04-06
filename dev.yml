@@ -8,7 +8,6 @@ services:
         - portal
     portal:
       build: .
-      container_name: portal
       ports:
         - 8800:8800
       depends_on:
@@ -20,8 +19,7 @@ services:
         - $PWD:/dev-app
         - production_ini:/etc/ckan/default/
     start_search_update:
-      image: datosgobar/portal-datos.gob.ar:development
-      container_name: start_search_update
+      build: .
       command: /etc/ckan_init.d/start_rebuild_cron.sh
       depends_on:
         - db
@@ -32,7 +30,6 @@ services:
         - production_ini:/etc/ckan/default/
     start_harvest:
       build: .
-      container_name: start_harvest
       command: /etc/ckan_init.d/start_cron.sh
       depends_on:
         - fetch_consumer
@@ -45,7 +42,6 @@ services:
         - $PWD:/dev-app
     gather_consumer:
       build: .
-      container_name: gather_consumer
       command: /etc/ckan_init.d/run_gather_consumer.sh
       depends_on:
         - db
@@ -57,7 +53,6 @@ services:
         - production_ini:/etc/ckan/default/
     fetch_consumer:
       build: .
-      container_name: fetch_consumer
       command: /etc/ckan_init.d/run_fetch_consumer.sh
       depends_on:
         - db
