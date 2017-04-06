@@ -37,6 +37,7 @@ python ./install.py --error_email "$EMAIL" --site_host="$HOST" \
     --datastore_user="$STORE_USER" --datastore_password="$STORE_PASS" \
     --repo portal_datos.gob.ar
 docker-compose -f latest.yml exec portal bash /etc/ckan_init.d/init_datosgobar.sh
+docker-compose -f latest.yml up -d start_harvest start_search_update
 ```
 
 ### Instalación avanzada
