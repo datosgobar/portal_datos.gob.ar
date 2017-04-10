@@ -3,6 +3,7 @@ services:
     nginx:
       container_name: datosgobar-nginx
       image: datosgobar/portal-base-nginx:release-0.1
+      restart: always
       ports:
         - 80:80
       depends_on:
@@ -26,6 +27,7 @@ services:
         - production_ini:/etc/ckan/default/
     start_search_update:
       image: datosgobar/portal-datos.gob.ar:release-0.1
+      restart: always
       container_name: datosgobar-start-search-update
       command: /etc/ckan_init.d/start_rebuild_cron.sh
       depends_on:
@@ -40,6 +42,7 @@ services:
     start_harvest:
       image: datosgobar/portal-datos.gob.ar:release-0.1
       container_name: datosgobar-start-harvest
+      restart: always
       command: /etc/ckan_init.d/start_cron.sh
       depends_on:
         - fetch_consumer
@@ -54,6 +57,7 @@ services:
         - production_ini:/etc/ckan/default/
     gather_consumer:
       image: datosgobar/portal-datos.gob.ar:release-0.1
+      restart: always
       container_name: datosgobar-gather-consumer
       command: /etc/ckan_init.d/run_gather_consumer.sh
       depends_on:
@@ -67,6 +71,7 @@ services:
         - production_ini:/etc/ckan/default/
     fetch_consumer:
       image: datosgobar/portal-datos.gob.ar:release-0.1
+      restart: always
       container_name: datosgobar-fetch-consumer
       command: /etc/ckan_init.d/run_fetch_consumer.sh
       depends_on:
@@ -91,6 +96,7 @@ services:
     redis:
       container_name: datosgobar-redis
       image: redis:3.2.7-alpine
+      restart: always
       networks:
         - portal-network
     solr:
@@ -102,6 +108,7 @@ services:
     postfix:
       container_name: datosgobar-postfix
       image: catatnight/postfix
+      restart: always
       ports:
         - "25:25"
         - "587:587"
