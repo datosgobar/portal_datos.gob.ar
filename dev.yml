@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
     nginx:
       image: datosgobar/portal-base-nginx:release-0.1
