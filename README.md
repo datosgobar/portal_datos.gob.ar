@@ -1,5 +1,9 @@
 # Portal-datos.gob.ar
 
+[![Build Status](https://travis-ci.org/datosgobar/portal_datos.gob.ar.svg?branch=master)](https://travis-ci.org/datosgobar/portal_datos.gob.ar)
+
+[![Documentation Status](https://readthedocs.org/projects/portal-datosgobar/badge/?version=latest)](http://portal-datosgobar.readthedocs.io/es/latest/?badge=latest)
+       
 Repositorio de la implementación de CKAN en Docker, desarrollada para la segunda versión del portal de datos de la [República Argentina](http://datos.gob.ar). 
 
 También podés [ver el repositorio del tema visual](https://github.com/datosgobar/datos.gob.ar).
