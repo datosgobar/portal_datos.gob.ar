@@ -89,3 +89,6 @@ ENV/
 .ropeproject
 
 .idea/
+.rbenv-gemsets
+.ruby-version
+.gems/
