@@ -15,7 +15,8 @@ before_deploy:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASS";
 
 deploy:
-  - provider: script
-    script: scripts/update_testing.sh
-    on:
-      tags: true
+  provider: script
+  skip_cleanup: true
+  script: scripts/update_testing.sh
+  on:
+    tags: true
