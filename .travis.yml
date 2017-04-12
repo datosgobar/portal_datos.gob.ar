@@ -18,5 +18,7 @@ deploy:
   - provider: script
     script: scripts/update_testing.sh
     on:
-      branch: master
+      branch:
+        - master
+        - dor-*
       tags: true
