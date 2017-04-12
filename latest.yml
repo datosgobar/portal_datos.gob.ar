@@ -101,7 +101,7 @@ services:
         - portal-network
     solr:
       container_name: datosgobar-solr
-      image: datosgobar/portal-base-solr:release-0.1
+      image: datosgobar/portal-base-solr:release-0.2
       restart: always
       networks:
         - portal-network
