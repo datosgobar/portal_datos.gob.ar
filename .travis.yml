@@ -20,5 +20,5 @@ deploy:
     on:
       branch:
         - master
-        - dor-*
+        - /^dor-.*/
       tags: true
