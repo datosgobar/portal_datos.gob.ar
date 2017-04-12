@@ -91,3 +91,4 @@ ENV/
 .idea/
 .rbenv-gemsets
 .ruby-version
+.gems/
