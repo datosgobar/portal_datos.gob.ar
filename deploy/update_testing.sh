@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -ev
+
 container_image=$(docker ps --format '{{ .Image }}' --filter 'name=portal_development')
 
 if [ "$TRAVIS_BRANCH" == "master" ]; then

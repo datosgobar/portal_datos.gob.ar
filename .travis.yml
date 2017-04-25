@@ -17,6 +17,6 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: deploy/update_testing.sh
+  script: "deploy/update_testing.sh"
   on:
     tags: true
