@@ -13,3 +13,4 @@ fi
 image_full_name="datosgobar/portal_datos.gob.ar:$tag"
 docker tag "$container_image" "$image_full_name"
 docker push "$image_full_name"
+exit 0
