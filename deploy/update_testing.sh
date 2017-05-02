@@ -11,6 +11,8 @@ else
 fi
 
 image_full_name="datosgobar/portal-datos.gob.ar:$tag"
+docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASS";
 docker tag "$container_image" "$image_full_name"
 docker push "$image_full_name"
+echo "Deploy finished!"
 exit 0
