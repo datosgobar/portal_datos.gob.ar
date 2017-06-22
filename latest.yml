@@ -109,9 +109,11 @@ services:
       container_name: datosgobar-postfix
       image: catatnight/postfix
       restart: always
+      environment:
+        - smtp_user=portal:portal
+        - maildomain
       ports:
         - "25:25"
-        - "587:587"
       networks:
         - portal-network
 
