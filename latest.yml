@@ -12,7 +12,7 @@ services:
         - portal-network
     portal:
       container_name: datosgobar
-      image: datosgobar/portal-datos.gob.ar:release-2.0.0
+      image: datosgobar/portal-datos.gob.ar:release-2.0.1
       restart: always
       ports:
         - 8800:8800
