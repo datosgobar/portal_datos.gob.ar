@@ -1,13 +1,16 @@
 version: '2'
 services:
     nginx:
-      image: datosgobar/portal-base-nginx:release-0.4
+      image: datosgobar/portal-base-nginx:release-0.6
       ports:
         - 80:80
       depends_on:
         - portal
     portal:
-      build: .
+      build: 
+        context: .
+        args:
+          - PORTAL_VERSION
       image: datosgobar/portal-development
       container_name: portal_development
       ports:
@@ -17,6 +20,8 @@ services:
         - solr
         - redis
         - postfix
+      environment:
+        - PORTAL_VERSION
       volumes:
         - $PWD:/dev-app
         - production_ini:/etc/ckan/default/
@@ -75,12 +80,14 @@ services:
     rabbitmq:
       image: rabbitmq:3.6.6-alpine
     solr:
-      image: datosgobar/portal-base-solr:release-0.4
+      image: datosgobar/portal-base-solr:release-0.6
     postfix:
       image: catatnight/postfix
+      environment:
+        - maildomain=localhost
+        - smtp_user=portal:portal
       ports:
         - "25:25"
-        - "587:587"
 
 # Using this, I share producion.ini configuration between containers
 volumes:
