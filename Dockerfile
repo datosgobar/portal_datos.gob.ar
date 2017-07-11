@@ -1,4 +1,4 @@
-FROM datosgobar/portal-base:release-0.7.1
+FROM datosgobar/portal-base:release-0.8.1
 MAINTAINER Leandro Gomez<lgomez@devartis.com>
 
 ARG PORTAL_VERSION
@@ -11,6 +11,8 @@ RUN $CKAN_HOME/bin/pip install -e git+https://github.com/datosgobar/datos.gob.ar
 ADD ./conf/config/datapusher.wsgi /etc/ckan/datapusher.wsgi
 COPY ./conf/config/datapusher.conf /etc/apache2/sites-enabled/datapusher.conf
 COPY ./conf/config/init_datosgobar.sh /etc/ckan_init.d/
+COPY ./conf/config/remove_google_analytics_plugin.sh /etc/ckan_init.d/
+RUN bash /etc/ckan_init.d/remove_google_analytics_plugin.sh
 RUN mkdir -p $CKAN_DIST_MEDIA
 RUN chown -R www-data:www-data $CKAN_DIST_MEDIA
 RUN chmod u+rwx $CKAN_DIST_MEDIA
