@@ -1,4 +1,6 @@
-Test de extensiones (plugins) de CKAN
+Extension de la plataforma `DatosGobAr`:
+
+Plugins
 ---
 
 La plataforma `CKAN` al ser instalada, por omisión, almacena todo su código fuente en la `PATH=/usr/lib/ckan/default/src`, homologamente, Andino X y DatosGobAr funcionan de la misma manera, por tanto dentro de su contenedor principal `datosgobar` y `andino` respectivamente, será dispuesto todo su código fuente.
@@ -9,6 +11,7 @@ Así mismo, las extensiones son guardadas con un formato particular, predefinido
 
 _Y responden al árbol:_
 
+```
   ckanext-{nombre_de_la_extension}/
   ├── setup.py
   ├── pip-requirements.txt
@@ -20,8 +23,8 @@ _Y responden al árbol:_
   |       ├── Controller{Nombre_de_la_extension}.py
   │       └── tests
   └── ckanext_{nombre_de_la_extension}.egg-info
-
-# Cambiar la Branch
+```
+### Cambiar la Branch.
 
 ```bash
 # Andino 1.X:
@@ -45,7 +48,7 @@ service apache2 restart
 systemctrl reload apache2.service
 ```
 
-# Problemas frecuentes:
+## Problemas frecuentes:
 
 _Es factible que, según las modificaciones que se realicen a el plugin en cuestión, al realizar un cambio de `git.branch`, automáticamente tengamos un error 500 en nuestro portal y por stdout el APACHE o el mismo CKAN, dependiendo del modo en el que se este corriendo la plataforma, nos informe que `{nombre_de_la_extension} Not Found!`, Esto ocurre a menudo al realizar cambios sobre el instalador de la extensión(`ckanext-{nombre_de_la_extension}/setup.py`), por tanto, para solucionarlo, solo debemos hacer:_
 
@@ -66,3 +69,4 @@ $ /usr/lib/ckan/default/bin/python setup.py install
 ```
 Realizados estos pasos, habremos `reinstalado` la extensión y solucionado el error `ckan.core.plugin.NotFound`
 
+Para mas informacion sobre plugins de `DatosGobAr` o `CKAN`, por favor consulte la [documentacion oficial del proyecto CKAN](http://docs.ckan.org/en/latest/extensions/index.html) e incluso el [tutorial](http://docs.ckan.org/en/latest/extensions/tutorial.html) provisto por `CKAN` para el desarrollo de la plataforma.
