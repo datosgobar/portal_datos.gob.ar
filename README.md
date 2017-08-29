@@ -48,6 +48,12 @@ Ver documentación de [instalación](http://portal-datosgobar.readthedocs.io/es/
 
 Ver la documentacion [uso](http://portal-datosgobar.readthedocs.io/es/latest/setup/usage/)
 
+## Extensión:
+
+### Plugins:
+
+Ver documentacion de [extension de la plataforma](http://portal-datosgobar.readthedocs.io/es/latest/setup/extension/)
+
 ## Créditos
 
 Este trabajo está inspirado en el desarrollo hecho por:
