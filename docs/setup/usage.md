@@ -8,7 +8,7 @@ Una vez finalizada la instalación, bajo cualquiera de los métodos, deberíamos
 # Agregar un admin
 # Asumo que el contenedor de ckan es llamado "datosgobar"
 ADMIN_USER=<my_admin>        
-docker exec -it andino /etc/ckan_init.d/add_admin.sh "$ADMIN_USER"
+docker exec -it datosgobar /etc/ckan_init.d/add_admin.sh "$ADMIN_USER"
 ```
 
 #### Nuevo usuario
