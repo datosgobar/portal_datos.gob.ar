@@ -1,4 +1,4 @@
-site_name: Datos.gob.ar
+site_name: Portal Datos.gob.ar
 pages:
   - Home: 'index.md'
   - Instalacion: 'setup/install.md'
