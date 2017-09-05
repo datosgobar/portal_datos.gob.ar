@@ -1,4 +1,4 @@
-site_name: Portal Andino
+site_name: Datos.gob.ar
 pages:
   - Home: 'index.md'
   - Instalacion: 'setup/install.md'
