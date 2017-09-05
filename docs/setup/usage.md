@@ -6,20 +6,20 @@ Una vez finalizada la instalación, bajo cualquiera de los métodos, deberíamos
 	
 ```bash		
 # Agregar un admin
-# Asumo que el contenedor de ckan es llamado "portal"
+# Asumo que el contenedor de ckan es llamado "datosgobar"
 ADMIN_USER=<my_admin>        
-docker exec -it portal /etc/ckan_init.d/add_admin.sh "$ADMIN_USER"
+docker exec -it andino /etc/ckan_init.d/add_admin.sh "$ADMIN_USER"
 ```
 
 #### Nuevo usuario
 
 ```bash
-docker exec -it portal /etc/ckan_init.d/paster.sh --plugin=ckan user add {new_user}
+docker exec -it datosgobar /etc/ckan_init.d/paster.sh --plugin=ckan user add {new_user}
 ```
 #### Blanqueo de contraseña para un usuario
 
 ```bash
-docker exec -it portal /etc/ckan_init.d/paster.sh --plugin=ckan user setpass {user}
+docker exec -it datosgobar /etc/ckan_init.d/paster.sh --plugin=ckan user setpass {user}
 ```
 
 ### Backup
@@ -37,7 +37,7 @@ pg_dump -h {db_host} -U {ckan_default_user} -p {port} -f /path/to/backup/folder/
 
 #### FS
 ```bash
-docker exec -it portal /bin/bash
+docker exec -it datosgobar /bin/bash
 mkdir -p /path/to/backup/folder/fs
 tar -cv $CKAN_DATA | gzip > /path/to/backup/folder/path/to/backup/folder/fs/prod.data.tar.gz
 ```
