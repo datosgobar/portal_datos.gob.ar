@@ -58,6 +58,6 @@ Este trabajo está inspirado en el desarrollo hecho por:
 
 ## Contacto
 
-Te invitamos a [crearnos un issue](https://github.com/datosgobar/portal-andino/issues/new?title=Encontre un bug en datos.gob.ar_docker) en caso de que encuentres algún bug o tengas feedback de alguna parte de `datos.gob.ar-en-docker`.
+Te invitamos a [crearnos un issue](https://github.com/datosgobar/portal-andino/issues/new) en caso de que encuentres algún bug o tengas feedback de alguna parte de `datos.gob.ar-en-docker`.
 
 Para todo lo demás, podés mandarnos tu comentario o consulta a [datos@modernizacion.gob.ar](mailto:datos@modernizacion.gob.ar).
