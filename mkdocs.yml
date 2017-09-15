@@ -3,6 +3,7 @@ pages:
   - Home: 'index.md'
   - Instalacion: 'setup/install.md'
   - Uso: 'setup/usage.md'
+  - Extensiones: 'setup/extension.md'
   - Desarrollo:
     - Docker: 'development/docker.md'
     - Tests: 'development/tests.md'
