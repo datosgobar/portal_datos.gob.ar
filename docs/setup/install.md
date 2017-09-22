@@ -2,9 +2,9 @@
 
 ## Instalación
 
-Teniendo en cuenta la dificultad de implementacion e incluso la cantidad de pasos para lograr un deploy existoso, existen dos formas de instalar esta distribución de **CKAN**. 
+Teniendo en cuenta la dificultad de implementación e incluso la cantidad de pasos para lograr un deploy exitoso, existen dos formas de instalar esta distribución de **CKAN**. 
 
-- Si no tenés muchos conocimientos de CKAN, Docker o de administracion de servidores en general, es recomendable usar la instalación **[simplificada  de Andino](#instalacion-simplificada-de-andino)**. Está pensada para que en la menor cantidad de pasos y de manera sencilla, tengas un portal de datos funcionando. 
+- Si no tenés muchos conocimientos de CKAN, Docker o de administración de servidores en general, es recomendable usar la instalación **[simplificada  de Andino](#instalacion-simplificada-de-andino)**. Está pensada para que en la menor cantidad de pasos y de manera sencilla, tengas un portal de datos funcionando. 
 - Si ya conocés la plataforma, tenés experiencia con Docker o simplemente, querés entender cómo funciona esta implementación, te sugiero que revises la **[instalacion avanzada de Andino](#instalacion-avanzada-de-andino)**
 
 ### Dependencias
@@ -14,14 +14,14 @@ Teniendo en cuenta la dificultad de implementacion e incluso la cantidad de paso
 
 ### Instalación simplificada
 
-La idea detrás de esta implementación de CKAN es **que sólo te encargues de tus datos**, nada más. Por eso, si "copiás y pegás" el comando de consola, en sólo unos momentos, tendrás un Andino listo para usar.
-Esta clase de instalación no requiere que clones el repositorio, ya que usamos contenedores alojados en [DockerHub](https://hub.docker.com/r/datosgobar)
+La idea detrás de esta implementación de CKAN es **que sólo te encargues de tus datos**, nada más. Por eso, si "copiás y pegás" el comando de consola, en solo unos momentos, tendrás un Andino listo para usar.
+Esta clase de instalación no requiere que clones el repositorio, ya que usamos contenedores alojados en [DockerHub](https://hub.docker.com/r/datosgobar).
 
 + Ubuntu|Debian|RHEL|CentOS:
 
 + Instalación:
 
-Para esta instalación ciertos parametros deben ser pasados a la aplicacion:
+Para esta instalación ciertos parámetros deben ser pasados a la aplicación:
 
 + Email donde se mandarán los errores. `EMAIL=admin@example.com`
 + Dominio o IP de la aplicación: `HOST=datos.gob.ar`
@@ -42,9 +42,9 @@ docker-compose -f latest.yml up -d start_harvest start_search_update
 
 ### Instalación avanzada
 
-La instalación avanzada está pensada para usarios que quieren ver cómo funciona internamente `Andino`
+La instalación avanzada está pensada para usuarios que quieren ver cómo funciona internamente `Andino`
 
-Para instalar y ejecutar Andino, seguimos estos pasos:
+Para instalar y ejecutar `Andino`, seguimos estos pasos:
 
 + Paso 1: Clonar repositorio.
 
@@ -61,11 +61,11 @@ Para instalar y ejecutar Andino, seguimos estos pasos:
         $ sudo su -c "echo POSTGRES_PASWORD=$DB_PASS >> .env"
         
 
-+ Paso 3: _construir y lanzar los contenedor de servicios usando el archivo **latest.yml**_
++ Paso 3: _Construir y lanzar los contenedor de servicios usando el archivo **latest.yml**_
 
         $ docker-compose -f latest.yml up -d db postfix redis solr        
 
-+ Paso 4: _construir y lanzar el contenedor de **datosgobar** usando el archivo **latest.yml**_
++ Paso 4: _Construir y lanzar el contenedor de **datosgobar** usando el archivo **latest.yml**_
 
 		$ docker-compose -f latest.yml up -d portal
 		
@@ -87,7 +87,7 @@ docker-compose -f latest.yml exec portal bash /etc/ckan_init.d/init_datosgobar.s
 
 ```
 
-+ Paso 8: _construir el contenedor de **nginx** usando el archivo **latest.yml**_
++ Paso 8: _Construir el contenedor de **nginx** usando el archivo **latest.yml**_
 
 		$ docker-compose -f latest.yml up -d nginx
 
