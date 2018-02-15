@@ -18,12 +18,12 @@ Para levantar toda la aplicacion, se puede correr:
 Si es la primera vez que se corre este comando, puede llegar a tardar bastante en descargar las imágenes.
 Una vez terminado, esto dejará en el puerto `localhost:80` la aplicacion corriendo, pero antes se debe correr un comando para inicializar en desarrollo:
 
-    $ docker exec -it portal /etc/ckan_init.d/init_dev.sh
+    $ docker-compose -f dev.yml exec portal /etc/ckan_init.d/init_dev.sh
 
 
 También se pueden levantar los servicios por separado de la aplicación:
 
-* Los `servicios`:
+* Levantar los __servicios__:
 
 ```$ docker-compose -f dev.yml up --build --abort-on-container-exit db sol redis postfix```
 
