@@ -92,3 +92,4 @@ ENV/
 .rbenv-gemsets
 .ruby-version
 .gems/
+wks.*

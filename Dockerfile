@@ -1,4 +1,4 @@
-FROM datosgobar/portal-base:release-0.8.7
+FROM datosgobar/portal-base:release-0.8.15
 MAINTAINER Leandro Gomez<lgomez@devartis.com>
 
 ARG PORTAL_VERSION
@@ -8,8 +8,6 @@ ENV CKAN_DEFAULT /etc/ckan/default
 
 WORKDIR /portal
 RUN $CKAN_HOME/bin/pip install -e git+https://github.com/datosgobar/datos.gob.ar.git#egg=ckanext-gobar_theme
-ADD ./conf/config/datapusher.wsgi /etc/ckan/datapusher.wsgi
-COPY ./conf/config/datapusher.conf /etc/apache2/sites-enabled/datapusher.conf
 COPY ./conf/config/init_datosgobar.sh /etc/ckan_init.d/
 COPY ./conf/config/remove_google_analytics_plugin.sh /etc/ckan_init.d/
 RUN bash /etc/ckan_init.d/remove_google_analytics_plugin.sh

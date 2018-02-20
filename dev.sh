@@ -1,49 +1,68 @@
 #!/bin/bash
 
 ProgName=$(basename $0);
-nginx_name="nginx"
-dev_container="datosgobar-dev"
 
 sub_help(){
     echo "Uso: $ProgName <subcomando>"
     echo "Subcomandos:"
-    echo "    build         Levanta los servicios"
-    echo "    up SRC DEST   Levanta la aplicacion montando un directorio"
-    echo "    setup         Instala el directorio con pip y levantar el server"
-    echo "    exec          Ejecuta comandos en el contenedor"
-    echo "    stop          Detiene todos los servicios (Todos los containers de hecho)"
-    echo "    rm            Borra el contenedor de desarrollo"
+    echo "    build             Generar las imágenes necesarias para los servicios"
+    echo "    up                Levantar los servicios"
+    echo "    stop              Parar los servicios"
+    echo "    rm                Borrar los contenedores de los servicios"
+    echo "    exec              Ejecuta comandos en el contenedor"
+    echo "    create_admin      Crear un usuario administrador"
+    echo "    setup             Inicializar la base de datos y un admin"
+    echo "    up_with SRC DEST  Levanta la aplicacion montando un directorio"
+    echo "    setup_with        Instala el directorio con pip y levantar el server"
     echo ""
 }
 
+sub_compose() {
+    docker-compose -f dev.yml $@;
+}
+
 sub_stop(){
-    docker stop $(docker ps -q)
+    sub_compose stop
 }
 
 sub_build() {
-    docker-compose -f dev.yml up --build -d $nginx_name
+    sub_compose build;
 }
 
 sub_rm() {
-    docker rm -fv "$dev_container";
+    sub_compose rm $@;
 }
 
 sub_exec() {
-    docker exec -it "$dev_container" $@;
+    sub_compose exec portal $@;
 }
 
-sub_setup() {
+sub_up(){
+    sub_compose up -d;
+}
+
+sub_create_admin() {
+    sub_exec /etc/ckan_init.d/add_admin.sh $@;
+}
+
+sub_setup(){
+    sub_exec /etc/ckan_init.d/init_dev.sh;
+    sub_create_admin admin;
+}
+
+sub_setup_with() {
     if [ -z "$1" ]; then
         echo "Falta el directorio a instalar."
         exit 1;
     fi
     directory="$1"
+    sub_exec /usr/lib/ckan/default/bin/pip install -r "$directory/dev-requirements.txt"
     sub_exec /usr/lib/ckan/default/bin/pip install -e "$directory"
     sub_exec /etc/ckan_init.d/init_dev.sh
     sub_exec /usr/lib/ckan/default/bin/paster serve /etc/ckan/default/production.ini
 }
 
-sub_up(){
+sub_up_with(){
     if [ -z "$1" ]; then
         echo "Falta source del directorio a montar."
         exit 1;
@@ -54,14 +73,14 @@ sub_up(){
     fi
     src="$1"
     dest="$2"
-    redis_container=portaldatosgobar_redis_1;
-    db_container=portaldatosgobar_db_1;
-    solr_container=portaldatosgobar_solr_1;
-    postfix_container=portaldatosgobar_postfix_1;
-    docker run -v "$src:$dest" --name "$dev_container"\
+    redis_container=portalandino_redis_1;
+    db_container=portalandino_db_1;
+    solr_container=portalandino_solr_1;
+    postfix_container=portalandino_postfix_1;
+    docker run -v "$src:$dest" \
         --link $redis_container:redis --link $db_container:db \
         --link $solr_container:solr --link $postfix_container:postfix \
-        --network portaldatosgobar_default -it -p 5000:5000 datosgobar/portal-base /bin/bash
+        --network portalandino_default -it -p 8080:8080 -p 5000:5000 datosgobar/portal-base /bin/bash
 }
 
 subcommand=$1
